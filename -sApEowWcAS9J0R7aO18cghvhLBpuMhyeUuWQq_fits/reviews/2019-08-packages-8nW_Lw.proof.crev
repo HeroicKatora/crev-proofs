@@ -1,0 +1,25 @@
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-08-30T17:07:50.241838519+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: suffix
+  version: 1.1.0
+  digest: fv_W8b9YQPJmjtyFctm2eMlg3tJdpP1LZZN9G_3o1uE
+review:
+  thoroughness: low
+  understanding: medium
+  rating: positive
+comment: |
+  As a side effect of the linear time requirements it also ensures that
+  allocations are bounded. However, there is no built-in way to interoperate
+  with any custom limits, precalculate required memory, or reuse allocations
+  made separately before.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+e1EmdomYnTlG3C3rH0lk8A0hPJiq-l8HCP9KqYxxUmgB8eLjVO5tJwZDjmYzTNDtE14lEeXE8IP3-4xkQTCDBg
+-----END CREV PACKAGE REVIEW-----
+
