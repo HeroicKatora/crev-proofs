@@ -78,3 +78,29 @@ comment: |
 MIgi6KW-TOoY0bYwkU6X74VjkDJDol5MminEGzwLm4TEVeamxRpAx0Opjc9O0oIH3iMrdJqkTWVJfnD16mzlDA
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-08-30T23:38:43.851594204+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: memchr
+  version: 2.1.2
+  revision: 437a177ab53bc1c27b5bcd5c23c3f2b0b6594d73
+  digest: HwYzw7Wrw7a6j5FSuBYeZfA2y7mKxqJ5w4J5_YnjVic
+review:
+  thoroughness: low
+  understanding: medium
+  rating: neutral
+comment: |
+  Not sure about the strict correctness of memrchr under stacked borrows but
+  the forward functions definitely seem fine. That said, miscompilation seems
+  unlikely since stacked borrows is more aggressive than llvm's noalias and raw
+  pointers do not receive that tag anyways.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+DXIPodT4K-EXyTuIvDkKP97HZt0TVHHGYU41EGDUOqJN8sZy0muaQYQfIqJEPaHgjTpsMSthDx-yApYPwY_5Ag
+-----END CREV PACKAGE REVIEW-----
+
