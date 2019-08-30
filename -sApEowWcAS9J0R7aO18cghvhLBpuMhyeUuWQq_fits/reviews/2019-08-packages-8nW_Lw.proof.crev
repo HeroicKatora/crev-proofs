@@ -52,3 +52,29 @@ comment: |
 r4IG70nthAbvN0MLLRWYuEB4BH7B3FHfbL0dphBTz3-VlUzeIm1x7lv7QACqQk8-C5CPMy9gdP4UHMGMOFG5CA
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-08-30T18:51:16.985684219+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: lazy_static
+  version: 1.4.0
+  revision: 421669662b35fcb455f2902daed2e20bbbba79b6
+  digest: 95REZRx8ItDao_V9l7sOsW9-OB6Jc5C7azc9mNC07fI
+review:
+  thoroughness: medium
+  understanding: high
+  rating: positive
+comment: |
+  A bit puzzling that the inline implementation does not use `UnsafeCell`
+  directly but only through `Cell`. This adds a Sync impl which explicitely can
+  not exist for Cell itself. But the Once is enough to protect against races
+  even though there is no real benefit from using `Cell` over `UnsafeCell`.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+MIgi6KW-TOoY0bYwkU6X74VjkDJDol5MminEGzwLm4TEVeamxRpAx0Opjc9O0oIH3iMrdJqkTWVJfnD16mzlDA
+-----END CREV PACKAGE REVIEW-----
+
