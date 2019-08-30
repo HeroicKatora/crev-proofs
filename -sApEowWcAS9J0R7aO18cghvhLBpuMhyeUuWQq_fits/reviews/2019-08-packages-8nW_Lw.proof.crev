@@ -23,3 +23,32 @@ comment: |
 e1EmdomYnTlG3C3rH0lk8A0hPJiq-l8HCP9KqYxxUmgB8eLjVO5tJwZDjmYzTNDtE14lEeXE8IP3-4xkQTCDBg
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-08-30T17:48:07.899070331+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: num-traits
+  version: 0.2.6
+  digest: FYqj2-tzDNLn-LOmqHSkd7S3rOcijjVxt_ZOZ7rUxkw
+review:
+  thoroughness: medium
+  understanding: high
+  rating: positive
+issues:
+  - id: "https://github.com/rust-num/num-traits/issues/125"
+    severity: medium
+    comment: ""
+comment: |
+  Not quite ready for untrusted input due to panics and not fuzzed. Minor
+  soundness concerns for floating point operations, rooted in Rust language
+  `as` operator not having fully specified behaviour (yet). All is well for the
+  integer part of the library.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+r4IG70nthAbvN0MLLRWYuEB4BH7B3FHfbL0dphBTz3-VlUzeIm1x7lv7QACqQk8-C5CPMy9gdP4UHMGMOFG5CA
+-----END CREV PACKAGE REVIEW-----
+
