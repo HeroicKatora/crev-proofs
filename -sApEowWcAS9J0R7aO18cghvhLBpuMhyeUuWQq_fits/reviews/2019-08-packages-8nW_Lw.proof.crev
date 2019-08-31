@@ -129,3 +129,33 @@ comment: |
 3ur9BtMa0tLHzI_TlAOS9oo6ow2y6ZsF_BFlrCXg-H_CJGVZZvZRd_LEg7XvkJ0FJ9PGXWp-_jb9u8p0aLo3Dw
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-08-31T04:12:24.198630418+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: hostname
+  version: 0.1.5
+  digest: F1dJ5ohjqBNpVnSCJ6yNTB7sRLwwh89Fx0iR3cLbkG4
+review:
+  thoroughness: high
+  understanding: high
+  rating: negative
+comment: |
+  No references and not compliant to all possible implementations of the POSIX
+  interfaces it utilizes. Manifestation of the unsafety requires the hostname
+  to be set to a 255 byte string by the machine operator and is thus not
+  directly exploitable, especially on Linux or glibc where it is impossible to
+  configure the system into such a state.
+  
+  This is not meant to assign blame towards the author, Crate repository is
+  properly abandoned and reverse dependencies should switch to another
+  implementation.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+_5rfc7qI_f3hqOFtrm_mcxE6VdkET-4z_oM_VIRtsVQdrVbFVLrfyd8BlWASkAlR43N3b9DfKohVg6ia0EYKDQ
+-----END CREV PACKAGE REVIEW-----
+
