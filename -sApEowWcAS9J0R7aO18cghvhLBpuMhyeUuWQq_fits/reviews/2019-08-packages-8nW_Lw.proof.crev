@@ -104,3 +104,28 @@ comment: |
 DXIPodT4K-EXyTuIvDkKP97HZt0TVHHGYU41EGDUOqJN8sZy0muaQYQfIqJEPaHgjTpsMSthDx-yApYPwY_5Ag
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-08-31T03:28:41.822311197+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: slab
+  version: 0.4.1
+  digest: U5Id25vB9U4QxxImbNpa6N0WUPdusGqZnR85MRPo9NE
+review:
+  thoroughness: high
+  understanding: high
+  rating: strong
+comment: |
+  No internal use of unsafe. Only an get_unchecked unsafe api without bounds
+  that translates directly to Vec and does not exploit the possible unsafety in
+  its implementation to the fullest extent (unreachable instead of
+  unreachable_unchecked).
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+3ur9BtMa0tLHzI_TlAOS9oo6ow2y6ZsF_BFlrCXg-H_CJGVZZvZRd_LEg7XvkJ0FJ9PGXWp-_jb9u8p0aLo3Dw
+-----END CREV PACKAGE REVIEW-----
+
