@@ -54,3 +54,33 @@ comment: |
 lGKlyLSoDPyjTx-a5-mL87PG6r_8TfqjUdOyOJ5BShDUJ_WrzPu-5HFAorGXoMHtUsEHrrXaihr415ZmLK3HAA
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-09-14T02:21:59.809908299+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: image-canvas
+  version: 0.0.4
+  revision: f1837fb05ba679dd41ee197c5df91782031dfd9a
+  digest: vXoBzQs9HGk18weHqVGMvtmHs-n_r1hV3yAdtepi-D8
+review:
+  thoroughness: medium
+  understanding: high
+  rating: strong
+comment: |
+  I'm the author and this packet avoids internal unsafe wherever it can. In its
+  current state it only requires it to perform a rather trivial cast for a
+  transparent `[u8]` wrapper type.
+  
+  The package also considers resource exhaustion and interfaces with
+  potentially panicking, internal allocation generally come with a twin that
+  instead tries to perform the operation inplace and is a no-op error if that
+  is not possible.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+YOcZeX87--CEO8I0soZ6tFzezypJ4PLnW4N7SNxgTSNNxpYS8o7kRdyBb5vqe5eXDa1e0OgWLWNqdekXZQu6Dg
+-----END CREV PACKAGE REVIEW-----
+
