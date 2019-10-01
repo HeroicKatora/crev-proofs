@@ -1,0 +1,58 @@
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2019-10-01T12:12:41.899229192+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: dtb
+  version: 0.1.3
+  revision: 3ffbc6cb070baa2aaa6ce2b95c45995b0c9a0c0e
+  digest: ErMrWME8nz37R8BAqY6RiKsIaBJ57e2gTpmoSp5gcR0
+review:
+  thoroughness: medium
+  understanding: medium
+  rating: neutral
+comment: |
+  Has fuzzing integration and been scrutinized by a previous review. I've done
+  version 0.1.2 in some detail and the only changes merged since then are bug
+  fix PRs addressing those. Mostly worried about inadvertently introduced bugs
+  in future changes due to awkward interfaces and implicit trust between
+  different components within the code.
+  
+  For example, code in `struct_item.rs` relies on the reader providing only 4
+  byte aligned buffers instead of reasserting that fact as an internal
+  invariant. However this invariant is relied upon for an aligned pointer load
+  later.
+  
+  Similarly some other C style patterns are prominent. Instead of functions
+  testing an invariant and constructing a result based off of it, boolean
+  return and construction by the caller is used. Example:
+  
+  ```
+        self.assert_enough_struct(offset, desc_size)?;
+  
+        let desc_be = unsafe {
+            &*((&self.struct_block[offset..]).as_ptr() as *const PropertyDesc)
+                as &PropertyDesc
+        };
+  ```
+  
+  This is fine in its current usage as far as I can tell but it's not very
+  stable with regards to possible future changes.
+  
+  This also means that manual arithmetic is used for bounds checks which is
+  prone to missed overflow considerations etc.
+  
+  A remaining antipattern is that of a byte output buffer: `StructItem` offers
+  reading its value as strings or a `u32` list. But instead of an iterator over
+  the backing memory the implementation takes an mutable reference to a byte
+  slice, manually aligns it to fit the output type, casts it, and writes the
+  data types `&'_ str` and `u32`. I have not found concrete misbehaviour from
+  this but it seems awkward.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+RGOPiUQas-WkHml18N9eXU26SQppGF93bY4L7PTluf6NJcGwUEkBaQoHUvVfcFScvixsBsESNZc0jDep2anjAw
+-----END CREV PACKAGE REVIEW-----
+
