@@ -120,3 +120,46 @@ comment: |
 CmnNfF-yHuY1E3OKcs5ZCOSQKxlae2jLYSIM5RmU3GXV1OczQ7XINaonsVc6qEGoVkDo_YIo3hMcEOEn-fkUAg
 -----END CREV PACKAGE REVIEW-----
 
+-----BEGIN CREV PACKAGE REVIEW-----
+version: -1
+date: "2020-01-10T19:04:29.242771899+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: bytemuck
+  version: 1.1.0
+  revision: 6d44eadbd2651a0704a8d66afee5d312b80795f2
+  digest: kpdE5Qy2Z6lRR7zkQRzJLc6kBBSLiUdZzUo6ckRMQqo
+review:
+  thoroughness: medium
+  understanding: high
+  rating: positive
+comment: |
+  The implementation is rather conservative on many fronts and requires very
+  strong, sometimes even unnecessary, preconditions for all operations. But
+  this makes reasoning easier since you work with a consistent set of
+  assumptions. This is in contrast to `zerocopy` which has at three differing
+  sets.
+  
+  The biggest leap of unsafety is the assumption that slices strides and arrays
+  agree with the size of their elements. This is not quite likely to change,
+  ever, but it should be noted nevertheless. The exact wording of `Pod` also
+  allows us to smuggle a type through its requirements. It takes some care to
+  try and only allow types that might violate the assumption by requiring a
+  defined `repr` but in its wording forgets that `repr(packed)` can be applied
+  to `repr(rust)`. Thus, the following type conforms to the wording but not the
+  spirit behind it.
+  
+  ```
+  \#[repr(packed)] struct BadSize(u16, u8)
+  ```
+  
+  The easiest fix would be to explicitly list the requirement that the size is
+  divisible by the alignment. This defines the stride to agree with the size.
+-----BEGIN CREV PACKAGE REVIEW SIGNATURE-----
+s8dcLRrOCsdkgdvLjPQibcc3MUR6tiXNxaUheqYeT_v1bONOWTHESaV8hLSNYPv1QuB9bHa65IU-taYjjKdbBA
+-----END CREV PACKAGE REVIEW-----
+
