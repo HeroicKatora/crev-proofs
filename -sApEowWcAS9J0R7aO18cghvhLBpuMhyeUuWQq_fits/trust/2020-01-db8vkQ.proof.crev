@@ -45,3 +45,31 @@ comment: |-
 Th9dNZtCudkEI3sXuNjCjsrMw0_aZ7h9pxUoYKrAQWBmEA06taR8W3dxDToE5cpw2MmLuyPywlZLZpsK7VyyAQ
 ----- END CREV PROOF -----
 
+----- BEGIN CREV PROOF -----
+kind: trust
+version: -1
+date: "2020-01-11T00:13:31.746746834+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+ids:
+  - id-type: crev
+    id: X98FCpyv5I7z-xv4u-xMWLsFgb_Y0cG7p5xNFHSjbLA
+    url: "https://github.com/kornelski/crev-proofs"
+trust: distrust
+comment: |-
+  Does not seem to take soundness seriously in consideration for reviews. E.g.
+  
+    name: tokio-current-thread
+    thoroughness: low
+    understanding: none
+    rating: positive
+  
+  This crate contains a TON of unsafe code including lifetime transmutations
+  and sharing via an unsafe cell wrapper that forcibly implements Send and Sync
+  without any local explanation for its safety. Yikes!
+----- SIGN CREV PROOF -----
+iWANLYi-nG7Bs_uCGylrY2uMj2Q_oIhmIu_ZgwPe5Wwv6RIfyuxbH5bPvjGSusHS6zzPCwGbZ1dIK2scs7H4Cg
+----- END CREV PROOF -----
+
