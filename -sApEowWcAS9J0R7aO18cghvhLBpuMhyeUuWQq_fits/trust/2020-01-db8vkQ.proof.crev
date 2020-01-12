@@ -94,3 +94,23 @@ comment: |-
 ICJQf74pAznH5T5vsF-GACkyRf2araIsKoOTAVa7usUUlD6u5ci6tUM3iJ-k_30umPZwBKdvP0hqthWU9F-9Cg
 ----- END CREV PROOF -----
 
+----- BEGIN CREV PROOF -----
+kind: trust
+version: -1
+date: "2020-01-12T18:52:32.345597731+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+ids:
+  - id-type: crev
+    id: Qf4cHJBEoho61fd5zoeweyrFCIZ7Pb5X5ggc5iw4B50
+    url: "https://github.com/kornelski/crev-proofs"
+trust: distrust
+comment: |-
+  See the other id: X98FCpyv5I7z-xv4u-xMWLsFgb_Y0cG7p5xNFHSjbLA
+  Basically, reviews very unsafe crates sloppily and gives them medium rating or higher.
+----- SIGN CREV PROOF -----
+Gv5KDP1xFdiHIK0kPtJSI3ngRWMcy4qJtWesxfEkDEsE9u3z9i1vJNHb0LKwtw3oEStTB-AjqiWPMT0VgkhAAA
+----- END CREV PROOF -----
+
