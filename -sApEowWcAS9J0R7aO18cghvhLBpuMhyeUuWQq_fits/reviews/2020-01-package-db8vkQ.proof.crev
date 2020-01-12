@@ -38,3 +38,68 @@ comment: |-
 Astc4uR2jO2-7cDrvPkVDa5w5YfHXKTaLJaT-hEs64RY77BLUWX2riZSKvvyhGBIqLj6U8igH6PzkQ9Rpp3uCw
 ----- END CREV PROOF -----
 
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-01-12T19:11:15.180998625+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: tokio-current-thread
+  version: 0.2.0-alpha.1
+  revision: 50e5d401df9931eafabee554bb1a370958fc57d2
+  digest: m8MaeDAatGNK6DlA-4VGmN32LVzYhorUDZGyzBUY1u8
+review:
+  thoroughness: medium
+  understanding: medium
+  rating: negative
+comment: |-
+  Best summarized as a flood of unsafe blocks.
+  
+  The `src/lib.rs` already looks somewhat suspicious. We have a thread local
+  containing a pointer that is unsafely accessed. It is set by transmuting a
+  local reference to a dynamic trait object which has its lifetime erased. This
+  particular portion might be fine if no code that uses the trait depends on
+  that lifetime. However, all of this is worryingly done without any statement
+  of purpose, any reference to the overall structure, and little to no
+  comments.
+  
+  Then we look into `src/scheduler.rs` and find our worst nightmares come to
+  life. Here's a short list of unexplained stuff:
+  
+  * uncommented impls of Sync and Send 
+  * an adhoc implementation of an intrusive queue/linked-list, giving a blog
+    post about C (!) as the source. Maybe one of the better sources, I do not
+    know, but it appears somewhat unmotivated and is intertwined with the rest of
+    the code.
+  * several different UnsafeCell that have been encapsulated with telepathy,
+    apparently, since there are no comments explaining them nor their access.
+  * unsafe blocks spanning ~70 lines
+  * and the amazing unsafe fn ptr2arc<T>(ptr: *const T) -> Arc<T>  containing
+  
+    ```rust
+    let anchor = mem::transmute::<usize, Arc<T>>(0x10);
+    ```
+  
+    without further explanation. Note that `T` is a type parameter that is
+    exposed to the user through the type parameter `P` of `CurrrentThread`.
+    This is restricted to `tokio-executor::park::Park` and provides an
+    associated type which is later used as the `T` in question. Note that a
+    public constructor exists.
+  
+    This is slightly unsound at best, if the node must be aligned to more than
+    that function guarantees, and horrible with regards to how the pointer is
+    used as a manual memoffset calculation afterwards.
+  
+  * The part where `Node` is used to ignore the lifetime of a contained object
+    and only its Drop implementation double panicking protects against using and
+    dropping the object out of its own lifetime is the least worrying here. Also,
+    since the comment refers to some type parameter `T` that doesn't exist in the
+    impl.
+----- SIGN CREV PROOF -----
+giPSiniQUfZOQNqKV4wDnGiLDKy38xG7FZgfVqtDhFO3OMjGhqq7grlVuV3sNwwcMrcBHAKL16bJc9pjNsPXBA
+----- END CREV PROOF -----
+
