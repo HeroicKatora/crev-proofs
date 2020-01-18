@@ -103,3 +103,40 @@ comment: |-
 giPSiniQUfZOQNqKV4wDnGiLDKy38xG7FZgfVqtDhFO3OMjGhqq7grlVuV3sNwwcMrcBHAKL16bJc9pjNsPXBA
 ----- END CREV PROOF -----
 
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-01-18T14:33:10.429831632+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: tinyvec
+  version: 0.2.0
+  revision: 90dee40fbfa7a28c94eebce18cc97d3e3cef04bf
+  digest: ZFq1iMgDRaNs_dQzTEwvec6xfjvIOZ79qIHu3Lj8YYs
+review:
+  thoroughness: medium
+  understanding: high
+  rating: positive
+comment: |-
+  Very focussed `forbid(unsafe)` crate.
+  
+  The minor flaws are introduced by trying to mimic the std interface too much
+  and too quickly. This leads to some misbehaviour in remove and drain, several
+  known slowness issues—algorithmic complexity as well as efficiency of
+  operations—and poorly documented interfaces with slightly non-standard panic
+  behaviour, and unknown decision making for adding them.
+  
+  Why implement `fmt::*` interface when the standard library does not for Vec?
+  How can Extend be called without risking panicking?
+  
+  No safety critical flaws though and I expect most to be fixable within the
+  interface that was published (except the abundance of trait impls that is a
+  matter of taste).
+----- SIGN CREV PROOF -----
+LOvefffdxtWRpS84ipEPY5BICPmBcnyyC0WrO_b2r-CCI6CIJ_TxhzgS6HgMyV5RJkewYr_W-zHGkAQfwzXJBA
+----- END CREV PROOF -----
+
