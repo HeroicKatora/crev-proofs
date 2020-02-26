@@ -64,3 +64,30 @@ comment: |-
 5ylnS7zL5rrov0Q63EVyHq4WzVnRTxtDnoLpL752VZP06wqTocKD3r9FRBsoD7iZo_63BS4zfVl-k9f8m5pdDg
 ----- END CREV PROOF -----
 
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-02-26T22:50:28.503936066+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: lazy-bytes-cast
+  version: 4.0.0
+  revision: bc090e88bc75d310509cc42f7e4de53ab443b592
+  digest: xQVEyNuD7mUVPJ4Zrgf6_s4Ve1ZcoogoHf_nuIXXn6s
+review:
+  thoroughness: medium
+  understanding: medium
+  rating: negative
+comment: |-
+  Trait `FromByteSlice` relies on associated item `FromByteArray::Array` being
+  a proper byte array. However, this latter trait and associated type are safe
+  to implement with an almost arbitrary other type (a few trait std bounds
+  don't stop any implementation).
+----- SIGN CREV PROOF -----
+_Z_zLLcYEUzbHHldkUnCHzvEogM96Yl_8kY3A4Wawja3WvzrviCyM82Ox5mfsorJm_v6lSIDBMHvStIyuy2cDQ
+----- END CREV PROOF -----
+
