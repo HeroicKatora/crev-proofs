@@ -30,3 +30,29 @@ comment: |-
 kXdwWygCCouumqLWoRJe1rEkKMmx30zR4eyj7gSiVagWRFQHkYz8eFITIKuAZIswTCddo_EoxoBX1Y1Uj_HSDw
 ----- END CREV PROOF -----
 
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-04-29T23:23:32.020813636+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: num-traits
+  version: 0.2.9
+  revision: 8eb83e242a54af1da0f968266dab79fb4e5c6921
+  digest: aqjbiigaJLqZkk-tuao02mk6piC7NaNa6CoC8DsnDek
+advisories:
+  - ids:
+      - "https://github.com/rust-num/num-traits/issues/125"
+    severity: medium
+    range: major
+    comment: "Potential denial of service, panic"
+comment: |-
+  Fixed panic when parsing floating point literals
+----- SIGN CREV PROOF -----
+Twra_y0aqTy61eOGC5IIKHn5lGgsqeo3Cg1zdau2eEOjA7JOb2srVYip0CN_rdVHa5MNwa6Pa43hG1pLV2DHDQ
+----- END CREV PROOF -----
+
