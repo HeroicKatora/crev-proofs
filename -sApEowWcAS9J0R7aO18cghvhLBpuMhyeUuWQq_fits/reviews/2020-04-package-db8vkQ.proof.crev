@@ -1,0 +1,32 @@
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-04-29T23:07:30.983614857+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: num-traits
+  version: 0.2.11
+  revision: 93ff6dc382f35d292830515156693f008bc61c6d
+  digest: siy7zPODay7BbSHKjbT0WA6uNQwRSal0t6V_5HT5kps
+package-diff-base:
+  source: "https://crates.io"
+  name: num-traits
+  version: 0.2.8
+  revision: 84e14d4f361dd7e374a3b5e1ffa186ed7c6d9835
+  digest: UzQZjEMehrOwuSUqjNwuKe3pNEx08EYUFKxsxfX5OQw
+review:
+  thoroughness: medium
+  understanding: high
+  rating: positive
+comment: |-
+  With a prior parsing bug fixed and Rust soon stabilizing floating point to
+  integer conversion without UB the previous reservations no longer hold. It
+  looks stable as is and doesn't attempt anything far fetched.
+----- SIGN CREV PROOF -----
+kXdwWygCCouumqLWoRJe1rEkKMmx30zR4eyj7gSiVagWRFQHkYz8eFITIKuAZIswTCddo_EoxoBX1Y1Uj_HSDw
+----- END CREV PROOF -----
+
