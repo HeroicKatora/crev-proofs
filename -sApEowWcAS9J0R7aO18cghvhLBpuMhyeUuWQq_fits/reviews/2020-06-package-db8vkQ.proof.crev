@@ -1,0 +1,46 @@
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-06-14T08:49:16.220347505+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: rgb
+  version: 0.8.18
+  revision: 31cfc553ca13106fe56ea2768c6487eb1248fc00
+  digest: hgJ-D6IOVo42hnZm-ftboT069S3MRyF3kmP22iU0RRc
+review:
+  thoroughness: low
+  understanding: medium
+  rating: negative
+advisories:
+  - ids:
+      - "https://github.com/kornelski/rust-rgb/issues/35"
+    severity: high
+    comment: ""
+comment: |-
+  A longstanding soundness issue of interpreting a user input type `T` as
+  bytes... This goes back to `0.2` at least where we have the following trait:
+  
+  ```
+  pub trait ComponentBytes<T> {
+    fn as_slice(&self) -> &[T];
+    fn as_mut_slice(&mut self) -> &mut [T];
+  
+    // Provides: does this obvious transmutation cast of `as_slice` result.
+    fn as_bytes(&self) -> &[u8] { ... }
+  }
+  ```
+  
+  This is so unsound, the user can even return an wrong slice of an arbitrary
+  and just let this trait do the dirty work of inspecting its bytes.
+  
+  In a more recent version we're allowed to even _write_ into that byte slice!
+  Let us create null references, invalid enums, whatever your heart desires.
+----- SIGN CREV PROOF -----
+iNx_TL8K_g1XUpbep5fq0wJ5hCvv5MjoUe7s1TMQymNWNvniM5kugkZQKrcZ-g6Fm8xs0jwihV2V7HietUDUDA
+----- END CREV PROOF -----
+
