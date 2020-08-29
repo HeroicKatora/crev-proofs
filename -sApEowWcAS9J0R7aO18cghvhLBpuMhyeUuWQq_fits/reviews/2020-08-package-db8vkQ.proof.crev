@@ -1,0 +1,29 @@
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-08-29T17:59:43.112658609+02:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: rgb
+  version: 0.8.20
+  revision: 3c7036221ba7d96d2b904fbee6fb87d8bec1aadf
+  digest: dKSuSnHlI9Pjpi3StG4Y-a93eudxQu7f0uKbYiWdm0s
+review:
+  thoroughness: low
+  understanding: medium
+  rating: positive
+comment: |-
+  On first glance you'll find a lot of unsafety but most of it is (now) benign.
+  The largest parts are casting a transparent, repr-C wrapper struct to native
+  arrays or slices and forwarding impls of bytemuck::{Pod, Zeroable}
+  accordingly. There's a derive crate for bytemuck that may be used instead.
+  There are not a lot of safety comments but not a lot of invariants used
+  either.
+----- SIGN CREV PROOF -----
+CSmpj9awCKoUOkoxM2TPT9BHUmT9N6HHE1h8a-djxIWTNR3wmDySYvdVRXhjEeokAREgru7NOkXEqYkoj7hRDQ
+----- END CREV PROOF -----
+
