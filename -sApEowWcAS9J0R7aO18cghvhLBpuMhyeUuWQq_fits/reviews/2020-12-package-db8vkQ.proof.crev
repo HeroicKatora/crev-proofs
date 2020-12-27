@@ -1,0 +1,29 @@
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2020-12-27T02:13:57.135371207+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: solkit
+  version: 0.4.7
+  revision: 1c13cf7ed3a0fbb35008ade33582d8756b6bd905
+  digest: vM9batCHbBYGwf-99-kLqhPJhxtrp8nGUONEhDdN9rs
+review:
+  thoroughness: medium
+  understanding: medium
+  rating: positive
+comment: |-
+  No unsafe code. This review includes the binary which does some file IO. I
+  believe one might get the binary to overwrite arbitrary files by symbolically
+  linking files (and the binary) such that they are located next to each other.
+  This puts it into a `portable` mode, which means it does not only write to
+  its own XDG directories. Not a real problem as that works for a lot of
+  applications.
+----- SIGN CREV PROOF -----
+MvzDi65-tRVtZB-JdB4-hZ24evRcCzUWDmxaAQ0-1AqFvAM0x-Bb-PIlsdUpuy47QfkkS2GSl-ZFF9AHQ5zbCA
+----- END CREV PROOF -----
+
