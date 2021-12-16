@@ -1,0 +1,75 @@
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: "2021-12-16T19:09:21.545220457+01:00"
+from:
+  id-type: crev
+  id: "-sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits"
+  url: "https://github.com/HeroicKatora/crev-proofs"
+package:
+  source: "https://crates.io"
+  name: ucs2
+  version: 0.3.2
+  revision: d2f2cfac80316b790c9d388aca6d67d3ce555f23
+  digest: p1_gp1fHbiwxkF0GvTZ2Rmzd_aUDZCwi2IKVBlh7lAA
+package-diff-base:
+  source: "https://crates.io"
+  name: ucs2
+  version: 0.2.0
+  revision: 8941a97048940e3821dc93c4d52ca40fb1b47637
+  digest: f1JtOpAb-zzObFNrS_Hz5nStHTdva-JXaScBjsRjt3o
+review:
+  thoroughness: high
+  understanding: high
+  rating: positive
+comment: |-
+  CI coverage is good, running both rustfmt and clippy on every push,
+  regardless of branch. It does not seem to run specifically on pull requests,
+  which, _I believe_, leads to Github not checking the merge commit
+  specifically but instead just individual commits on the remote branch. Not
+  too consequential in any case, just slightly unorthodox.
+  
+  Since 0.2.0 (the previous review) decoding has been added which seems to have
+  resulted in an additional internal dependency (bit_field) that has _not_ yet
+  reached `1.0`. However, it remained stable for the past year. It's not
+  immediately clear why a simple shift-and-mask would not be clean enough here,
+  the traits provided by the dependency seem much more relevant if they help
+  enable an interface or generic implementation—which is both not required
+  here.
+  
+  The decode interface looks sound and decently usable. There is an interesting
+  difference in that its `_with` variant returns a count on success whereas the
+  encoding methods do not. Additionally, it's unclear how to efficiently and
+  properly react to an `OverflowError` because neither the number of
+  successfully consumed input nor the actually required output would be
+  available to the caller.
+  
+  The encode interface is unchanged since `0.2.0`. Thus I'm preserving the
+  previous review.
+  
+  Contains unsafe code as a mechanism to eliminate bounds checks by asserting
+  properties with unreachable_unchecked. However, this appears to make proper
+  (and only proper) use of the unsafe assertion that strings are valid UTF-8
+  given by the standard library.
+  
+  The unsafe code is documented and the reasoning behind it is explained. The
+  only minor flaw is that it does not properly explain that the validity
+  invariant used is being tested for. Since it does reference both utf-8 and
+  the byte length in its argument this should be straightforward to the reader
+  though.
+  
+  A slightly cleaner way of testing the conditions might have been matching the
+  first byte with integer ranges, which would have eliminated the last bounds
+  check without an additional unreachable assertion.
+  
+  No `strong` rating due to superficially unimportant dependency, and concerns
+  about the maturity of the interface (see above).
+  
+  It remains unclear if an iterator based design instead of callbacks was
+  considered, potentially placing control flow in the hands of the caller. This
+  may be important for some cases where buffers need to be flushed while
+  efficiently preserving the decoding state.
+----- SIGN CREV PROOF -----
+LU6sTA6CDaBTfTJ5gYA8E2PShFbB4gcv-NAHN6gGRnL1j5N424FQWqd1a0PzXoZRxMAlHl7g8FznWAoKIyu0Dg
+----- END CREV PROOF -----
+
