@@ -1,0 +1,48 @@
+----- BEGIN CREV PROOF -----
+kind: package review
+version: -1
+date: 2025-04-07T19:59:16.631402020+02:00
+from:
+  id-type: crev
+  id: -sApEowWcAS9J0R7aO18cghvhLBpuMhyeUuWQq_fits
+  url: https://github.com/HeroicKatora/crev-proofs
+package:
+  source: https://crates.io
+  name: secrets
+  version: 1.2.0
+  revision: 79d479afacd621decbd5cd986bd1f8bef49a83bd
+  digest: B9_9IBfzLDVdZov0VzjFXGMIZ4zVGACBM_FH4DCZFLI
+review:
+  thoroughness: high
+  understanding: medium
+  rating: negative
+issues:
+- id: '100'
+  severity: high
+  comment: ''
+alternatives:
+- source: crates.io
+  name: secstr
+comment: |-
+  Note: this library has some deficiencies but its core operations are sound
+  and very useful so keeping it for now.
+  
+  It seems unmaintained. There is a soundness bug: it re-implements the
+  `bytemuck` concept of Pod types but does so for tuples, which are _not_ as
+  they contain uninit padding. It also has a very questionable `uninitialized`
+  method that _claims_ to initialize data but actually only initializes a
+  single byte. Like what the fuck are you doing.
+  
+  In consequence, only use this library with `T=u8`! And use our wrappers.
+  
+  Also the naming is bad. Its `Vec` does not allow lengthening and does not
+  distinguish between length and capacity. Its Box is actually an Array. If I'd
+  reconstruct this crate then there would be a `as_raw_{,_mut}` which separates
+  references to allocated data and a lock-on-Drop-value. Inadvisable to use but
+  would solve many missing interface problems. And it forgets to `Send` or
+  `Sync` anything, of course storing raw pointers so none of those are
+  auto-derived.
+----- SIGN CREV PROOF -----
+5aV0ZerWKmUH03QeweCNYME2uFagpDnqjVhwy5ndQ67yZqKz4KY1sl-R8LHZsISIFlVN5Z1gBffrkKMvLLxMDg
+----- END CREV PROOF -----
+
